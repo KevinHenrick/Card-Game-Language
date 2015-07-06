@@ -1,0 +1,18 @@
+%%%%%%%Card Game Language(CGL)%%%%%%%
+
+%%%%%%%	Kevin Henrick  %%%%%%%
+%%%%%%%	Ryan Jones     %%%%%%%
+%%%%%%%	Mark Micchelli %%%%%%%
+%%%%%%%	Hebo Yang 	   %%%%%%%
+
+%%%%%%% Columbia University, December 19,2012%%%%%%% 
+
+1. Type './cgl.bash xxx.cgl' to compile and run a game under the 'games' folder, where 'xxx.cgl' is the name of the game written in cgl.
+
+2. cd into 'test_cgl' and type './parser.bash' to run the all the test cases for scanner, parser, and generator. 
+Type './parser.bash xxx.cgl' to run a single test case in the 'parser_test' folder. 
+
+Type './analyzer.bash' to run the all the test cases for semantic anlayzer. 
+Type './analyzer.bash xxx.cgl' to run a single test case in the 'analyzer_test' folder. 
+
+

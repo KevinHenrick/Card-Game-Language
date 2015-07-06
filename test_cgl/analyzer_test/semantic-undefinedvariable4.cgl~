@@ -1,0 +1,8 @@
+PLAYER {
+	list hand=[$AH];
+}
+
+SETUP {
+	list hand2=hand;
+}
+

@@ -1,0 +1,8 @@
+SETUP{
+   list royal = [$10H, $JH, $QH, $KH, $AH];
+   card a1= <- royal;
+	card b1= <- royal;
+	string a=intToString(value(a1))^suit(a1);
+	string b=intToString(value(b1))^suit(b1);
+   print(a^"\n"^b);
+}

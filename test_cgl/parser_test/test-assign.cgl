@@ -1,0 +1,7 @@
+SETUP{
+	int a1=0;
+	card b1=$4S;
+	string a=intToString(a1);
+	string b=intToString(value(b1))^suit(b1);
+   	print(a^"\n"^b);
+}

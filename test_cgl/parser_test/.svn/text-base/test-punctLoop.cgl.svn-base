@@ -1,0 +1,12 @@
+SETUP{
+	int a=2;
+	while (a<3){
+		a=a+1;
+		string a1=intToString(a);
+		print(a1);
+	}
+	while (a<3){
+		string a2=intToString(a);
+		print(a2);
+	}
+}

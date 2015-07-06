@@ -1,0 +1,7 @@
+SETUP{
+	list b = [true, false];
+	<- b;
+	bool a1= <-b;
+	string a="false";
+	if (!a1){print(a);}
+}

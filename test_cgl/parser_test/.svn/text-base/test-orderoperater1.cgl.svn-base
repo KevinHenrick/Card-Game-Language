@@ -1,0 +1,5 @@
+SETUP{
+	int a1=1+2*3;
+	string a=intToString(a1);
+	print(a);
+}

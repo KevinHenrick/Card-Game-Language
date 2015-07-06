@@ -1,0 +1,8 @@
+SETUP{
+  bool a1 = true && true;
+  bool b1 = true && false;
+	string a="true";
+	string b="false";
+	if (a1) {print(a^"\n");}
+	if (!b1){print(b);}
+}

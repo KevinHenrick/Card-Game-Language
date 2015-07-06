@@ -1,0 +1,22 @@
+SETUP{
+	bool a1 = 5 == 5        /* true */
+	bool b1 = 6 == 5        /* false */
+	bool d1 = “a” == “a”    /* true */
+	bool e1 = $JS == $*S    /* true */
+	bool f1 = [] == [[]]    /* false */
+	bool g1 = true == false /* false */
+
+	string a ="true";
+	string b ="false";
+	string d ="true";
+	string e = "true";
+	string f = "false";
+	string g = "false";
+
+	if (a1){print(a^"\n");}
+	if (!b1){print(b^"\n");}
+	if (d1){print(d^"\n");}
+	if (e1){print(e^"\n");}
+	if (!f1){print(f^"\n");}
+	if (!g1){print(g);}
+}

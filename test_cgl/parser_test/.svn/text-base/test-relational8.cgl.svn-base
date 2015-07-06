@@ -1,0 +1,15 @@
+SETUP{
+	bool a1 = “a” !== “b”;
+	bool b1 = [] !== $6*;
+	bool c1 = [9] !== [9.];
+	bool d1 = 9 !== 9.;
+	string a ="false";
+	string b ="true";
+	string c ="false";
+	string d ="true";
+	if (!a1){print(a^"\n");}
+	if (b1){print(b^"\n");}
+	if (!c1){print(c^"\n");}
+	if (d1){print(d^"\n");}
+}
+

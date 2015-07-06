@@ -1,0 +1,7 @@
+SETUP{
+  int a1 = 30 / 5;
+  double b1 = 6. / 0.5;
+	string a=intToString(a1);
+	string b=doubleToString(b1);
+  print(a^ "\n" ^ b);  
+}

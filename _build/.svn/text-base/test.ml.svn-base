@@ -1,0 +1,104 @@
+open Parser
+open Generator
+
+let _ =
+let lexbuf = Lexing.from_channel stdin in
+let program = Parser.program Scanner.token lexbuf in
+let main_string = Generator.make_main_class program in
+let player_string = Generator.make_player_class program in
+let card_string = Generator.make_card_class program in
+let main_java = open_out "Main.java" in
+let player_java = open_out "Player.java" in
+let card_java = open_out "Card.java" in
+output_string main_java main_string;
+output_string player_java player_string;
+output_string card_java card_string
+
+
+
+
+(*************** Testing find_variable ****************************)
+(* Test vdcels for find_variable*)
+let vdecl_test_a = { 
+	    vdt = IntType;
+			vname = "IntA";
+			value = 32 + 5;
+			}
+			
+let vdecl_test_b = {
+	    vdt = ListType;
+			vname = "ListB";
+			value = List([Int(1); Int(2); Int(3)]); 
+			}
+
+let vdecl_test_c = {
+			vdt = BoolType;
+			vname = "BoolC";
+			value = Bool(true && false || false);
+			}
+(* Test scope for find_variable*)			
+let test_scope = {
+		parent = None;
+		variables = [vdecl_test_a; vdecl_test_b; vdecl_test_c];
+		functions = [];
+	 
+	 }
+(*Successful find_variable function*)
+let rec find_variable (scope : symbol_table) name =
+	try 
+		List.find (fun {vdt=_; vname=s; value=_} -> s = name) scope.variables
+	with Not_found ->
+		match scope.parent with
+		  Some(parent) -> find_variable parent name
+		| _ -> raise Not_found
+
+
+(*************** Testing find_function *********************)
+(* Test vdecls for find_function *)
+let vdecl_test_a = { 
+	    vdt = IntType;
+			vname = "IntA";
+			value = 32 + 5;
+			}
+			
+let vdecl_test_b = {
+	    vdt = ListType;
+			vname = "ListB";
+			value = List([Int(1); Int(2); Int(3)]); 
+			}
+
+let vdecl_test_c = {
+			vdt = BoolType;
+			vname = "BoolC";
+			value = Bool(true && false || false);
+			}
+(* Test function for find_function*)
+let test_function_a = {
+	    fdt = IntType;
+			fname = "IntFunctionA";
+			formals = [];
+			fbody = [];
+	
+}
+
+(* Test scope for find_function*)
+let test_scope = {
+		parent = None;
+		variables = [vdecl_test_a; vdecl_test_b; vdecl_test_c];
+		functions = [test_function_a];
+	 
+	 }
+
+(* Successfully tested find_function*)
+let rec find_function (globalScope : symbol_table) name =
+	try
+		List.find (fun {fdt=_; fname=s; formals=_; fbody=_} -> s = name) globalScope.functions
+	with Not_found ->
+		raise(Failure("function called, but not found in global scope"))
+
+
+
+(*****************  Testing Ast.expr -> Sast.expr ********************************)
+
+
+

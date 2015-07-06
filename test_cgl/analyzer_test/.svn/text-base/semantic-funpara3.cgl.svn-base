@@ -1,0 +1,15 @@
+SETUP {
+	def int check(bool c){
+		if (c){
+	 		return 0;
+		}
+		else{
+	 		return 1;
+		}
+	}
+
+	bool a=true;
+	bool b=a;
+	int d=check(a,b);
+}
+

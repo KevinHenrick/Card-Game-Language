@@ -1,0 +1,16 @@
+SETUP{
+	int a=3;
+	if (a<3){
+		a=a;
+	}
+	else if (a<4){
+		a=a+1;
+	}
+	else {
+		a=a+2;
+	}
+	string a1=intToString(a);
+	print(a1);
+}
+
+	

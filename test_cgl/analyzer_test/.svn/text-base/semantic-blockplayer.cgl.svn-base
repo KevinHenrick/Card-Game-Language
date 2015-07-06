@@ -1,0 +1,10 @@
+PLAYER {
+	int a =1;
+	bool b =try(1);
+}
+SETUP {
+	def bool try(int p){
+		int p=1;
+	} 
+}
+

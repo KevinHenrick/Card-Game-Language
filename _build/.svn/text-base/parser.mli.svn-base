@@ -1,0 +1,58 @@
+type token =
+  | ASSIGN
+  | PLUS
+  | SUB
+  | MULT
+  | DIV
+  | MOD
+  | GEQ
+  | LEQ
+  | GT
+  | LT
+  | EQ
+  | NEQ
+  | TEQ
+  | TNEQ
+  | AND
+  | OR
+  | NOT
+  | CONCAT
+  | ADDR
+  | ADDL
+  | REMR
+  | REML
+  | DOT
+  | SEMI
+  | COMMA
+  | LPAREN
+  | RPAREN
+  | LBRACE
+  | RBRACE
+  | DOLLAR
+  | LBRACK
+  | RBRACK
+  | INCLUDE
+  | DEF
+  | ELSE
+  | ELE
+  | FOREACH
+  | IF
+  | PLAYER
+  | RETURN
+  | SETUP
+  | TURN
+  | WHILE
+  | WIN
+  | YOUR
+  | TYPE of (Ast.datatype)
+  | INT of (int)
+  | DOUBLE of (float)
+  | BOOL of (bool)
+  | STRING of (string)
+  | CARD of (int * char)
+  | SUIT of (char)
+  | ID of (string)
+  | EOF
+
+val program :
+  (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> Ast.program

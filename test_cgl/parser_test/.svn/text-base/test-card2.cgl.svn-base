@@ -1,0 +1,10 @@
+SETUP{
+int i = 12;
+card queenOfHearts1 = $(i)H;
+/*card queenOfHearts2 = $12H;*/
+card queenOfHearts3 = $QH;
+string a=intToString(value(queenOfHearts1))^suit(queenOfHearts1);
+/*string b=intToString(value(queenOfHearts2))^suit(queenOfHearts2);*/
+string c=intToString(value(queenOfHearts3))^suit(queenOfHearts3);
+print(a^"\n"^c);
+}

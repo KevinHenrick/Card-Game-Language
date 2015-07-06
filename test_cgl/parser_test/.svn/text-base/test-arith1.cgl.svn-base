@@ -1,0 +1,5 @@
+SETUP{
+   string a=intToString(-4);
+   string b=doubleToString(-4.0);
+   print(a^"\n"^b);
+}

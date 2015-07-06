@@ -1,0 +1,433 @@
+
+(* Author Ryan Jones and Kevin Henrick *)
+(* The semantic analyzer takes in an AST and type checks each node of the tree,*)
+(* and returns the correctly checked node to the semantically analyzed abstract*)
+(* syntax tree (SAST). *)
+
+open Ast
+open Corelibrary
+
+(* module StringMap = Map.Make(String) *)
+
+(* Creating the symbol_table *)
+type symbol_table = {
+  parent : symbol_table option;
+  functions : fdecl list; 
+  variables : vdecl list;
+}
+
+let string_of_datatype = function
+      IntType -> "IntType"
+    | DoubleType -> "DoubleType"
+    | BoolType -> "BoolType"
+    | StringType -> "StringType"
+    | CardType -> "CardType"
+    | ListType -> "ListType"
+    | PlayerType -> "PlayerType"
+    | AnytypeType -> "AnytypeType"
+
+(* DEFAULT fdt is Ast.IntType *)
+let intToString = 		{ fdt = Ast.StringType; fname = "intToString"; 		formals = []; fbody = []; }
+let doubleToString = 	{ fdt = Ast.StringType; fname = "doubleToString"; formals = []; fbody = []; }
+let stringToInt =			{ fdt = Ast.IntType; fname = "stringToInt";		formals = []; fbody = []; }
+let stringToDouble =	{ fdt = Ast.DoubleType; fname = "stringToDouble";	formals = []; fbody = []; }
+let value =						{ fdt = Ast.IntType; fname = "value";					formals = []; fbody = []; }
+let scan =						{ fdt = Ast.IntType; fname = "scan";						formals = []; fbody = []; }
+let print =						{ fdt = Ast.IntType; fname = "print";					formals = []; fbody = []; }
+let suit =						{ fdt = Ast.StringType; fname = "suit";						formals = []; fbody = []; }
+let random =					{ fdt = Ast.ListType; fname = "random";					formals = []; fbody = []; }
+let shuffle =					{ fdt = Ast.ListType; fname = "shuffle";				formals = []; fbody = []; }
+let turn =						{ fdt = Ast.IntType; fname = "turn";						formals = []; fbody = []; }
+let win =							{ fdt = Ast.IntType; fname = "win";						formals = [];	fbody = []; }
+
+
+let global_scope = {
+  parent = None;
+	variables = [];
+	functions = [ intToString; doubleToString; 
+	          stringToInt; stringToDouble; 
+	          value;       suit;
+						scan;        print;  
+						random;      shuffle;
+						turn;        win ];
+}
+
+
+(* Finding the variable in the scope by its name*)
+let rec find_variable scope name =
+	try 
+		List.find (fun {vdt=_; vname=s; value=_} -> s = name) scope.variables
+	with Not_found ->
+		match scope.parent with
+		  Some(parent) -> find_variable parent name
+		  | _ -> raise (Failure("Variable not found in scope"))
+
+
+
+(* check if a function is present in global scope *)
+let rec find_function scope name =
+	let rec getGlobalScope scope = match scope.parent with
+		| None -> scope
+		| Some(parent) -> (getGlobalScope parent)
+	in
+	try
+		List.find (fun {fdt=_; fname=s; formals=_; fbody=_} -> s = name) (getGlobalScope scope).functions
+	with Not_found ->
+		raise(Failure("Function not found in global scope"))
+
+
+
+(* Used identifiers must be defined: use find_variable function OR find_func function *)
+(* Identifier references must be variables or functions  *)
+(* Function calls must refer to functions: use find_func function *)
+(* Left side of assign binop must be existing variable of same type as right side. *)
+
+
+let rec exprCheck scope = function
+
+	(* pass literals right through, already validated in the scanner *)
+	| Ast.Int i       -> Ast.Int(i)
+	| Ast.Double d    -> Ast.Double(d)
+	| Ast.Bool b      -> Ast.Bool(b)
+	| Ast.String s    -> Ast.String(s)
+	| Ast.Card (i,c)  -> Ast.Card(i,c)
+
+
+  | Ast.CardExpr (e,c)  -> 
+			let is_valid expr = match expr with
+		    | Ast.Int i ->  if ( i>1 && i<15 ) then 
+					                true (* value is valid *)
+				                else 
+													raise (Failure ("card integer value must be between 2 and 14, inclusive.")	)	 
+		    | Ast.Id  id -> let curVdecl = find_variable scope id in
+				                if(curVdecl.vdt == Ast.IntType)  (* id must refer to IntType in CardExpr*)
+												  then true
+												else raise (Failure ("Id in CardExpr must be type Int, found type " ^ string_of_datatype curVdecl.vdt))
+	      	(*		| Ast.Ele   ->  let eleVar = _(* TODO *)__ in(* lookup what ele currently refers to 
+				                                                in local symbol table MAYBE MARK *)
+				                if (eleVar.datatype == Ast.IntType)
+												  then true
+												else raise (Failure ("Ele must refer to an element of type Int, found type " ^ eleVar.datatype))
+				*)
+												
+				| _         ->  raise (Failure ("card expression is wrong type"))
+	    in 
+			if ( is_valid e ) then 
+        Ast.CardExpr( exprCheck scope e, c)  (* SUCCESS RETURN VALUE *)
+		  else raise (Failure ("card expression value or type is wrong"))
+			
+  | Ast.List (elements) -> Ast.List( List.map (exprCheck scope) elements )
+				
+  | Ast.Player (e1, e2) ->
+		    let is_valid_player expr1 expr2 = match expr1,expr2 with
+				| Ast.String(s), Ast.Int(i) -> true
+				| _ , _ -> false
+				in 
+				if is_valid_player e1 e2
+				  then Ast.Player(exprCheck scope e1 , exprCheck scope e2)
+	      else 
+					raise(Failure("Invalid player name or turn id"))   
+  (*| Ast.Id(s) -> (* use find_variable and find_function *)
+			try
+				let newVdecl = find_variable scope s in
+		    Ast.IdV(newVdecl), newVdecl.vdt   (* look for it as a variable with find_variable *)
+	    with Failure(msg) ->
+			  try
+				  let newFdecl = find_function scope s in
+			    Ast.IdF(newFdecl), newFdecl.fdt (* then look for it as a function with find_function *)
+				with Failure(msg) -> raise(Failure("Id not found in scope"))
+				*)
+
+  | Ast.Id(s) -> (* use find_variable and find_function *)
+	  let newVdecl = find_variable scope s in
+		Ast.Id(newVdecl)  (* look for it as a variable with find_variable *)
+
+	| Ast.Ele -> Ast.Ele, (find_variable scope "ele").vdt
+  | Ast.Your -> 
+		  if( (find_variable scope "your").vname = "your") 
+			  then Ast.Your
+		  else
+			  raise(Failure("Your expected inside of turn block, but found outside of turn block"))
+				(* MIGHT NOT BE REACHED EVER *)
+
+	| Ast.Binop (expr1, op, expr2) ->  (* taken from MicroC Type Checker*)
+	      (* The types of operands for unary and binary operators must be consistent. *)
+		    ( 
+				let e1 = exprCheck scope expr1 in
+        let e2 = exprCheck scope expr2 in
+        let _, t1 = e1 (* Get the type of each child *) in
+        let _, t2 = e2 in
+				match t1, op, t2 with
+				| Ast.BoolType, (And| Or), Ast.BoolType ->  (* Bool *)
+					Ast.Binop(expr1, op, expr2)
+				
+				| IntType, Mod, IntType ->  (* Ints *)
+					Ast.Binop(expr1, op, expr2)  
+					
+				| (IntType | DoubleType), (Plus | Sub | Mult | Lt | Leq | Gt | Geq), (IntType | DoubleType) ->  (* Ints or Floats *)
+					Ast.Binop(expr1, op, expr2)
+				
+				| (IntType), Div, (IntType) -> (* Ints division *)
+					Ast.Binop(expr1, op, expr2)  
+				
+				| (IntType | DoubleType), Div, (IntType | DoubleType) -> (* Ints and Floats mixed, excluding Int,Int  (captured by above)  *)
+					Ast.Binop(expr1, op, expr2)  
+				
+				| _, (Eq | Neq | Teq | Tneq), _  ->   (* Anything? *)
+					Ast.Binop(expr1, op, expr2)
+					
+				| StringType, Concat, StringType ->  (* Strings *)
+				  Ast.Binop(expr1, op, expr2)
+					
+				| ListType, (Addl | Addr), ListType -> (* expr lists *)
+				  Ast.Binop(expr1, op, expr2)
+							
+				| PlayerType, Dot, AnytypeType  -> Ast.Binop(expr1, op, expr2) (* left expr is expr * expr or Id, right expr is Id *)    
+			
+					
+				| _, _, _ -> raise(Failure("Binop has improper operands"))	
+				)
+		
+  | Ast.Unopl (op, expr) ->
+		  (
+			let e1 = exprCheck scope expr in
+      let _, t1 = e1 in (* Get the type of each child *)
+			match op, t1 with 
+		  | Not, BoolType -> Ast.Unopl(op, expr) (* Bool *)
+		  | Reml, ListType -> Ast.Unopl(op, expr) (* expr list *)  (* ASK MARK regarding ListType correct for expr list*)
+      | _,_ -> raise(Failure("Invalid operand for left-associative unary operator"))
+			)
+
+  | Ast.Unopr (expr, op) ->
+		  (
+		  let e1 = exprCheck scope expr in
+      let _, t1 = e1 in (* Get the type of each child *)
+			match t1, op with 
+		  | ListType, Remr -> Ast.Unopr(expr, op) (* expr list *)
+		  | _ -> raise(Failure("Invalid operand for right-associative unary operator"))
+			)
+
+  | Ast.Call (string, exprList) ->
+		(
+		(*
+	  (* check that string is a function *)
+		let funcFound = find_function scope string
+		in
+		(* check exprList and get checked list back *)
+		let rec elTypesAndExprs elementList typeList exprList = match elementList with
+		| [] -> List.rev(typeList), List.rev(exprList)
+		| head::tail ->
+		  let ec = exprCheck scope head in
+      let e1, t1 = ec   (* split ec into e1, t1 *)
+  	  in
+			elTypesAndExprs( tail, t1::typeList, e1::exprList)
+		in
+		*)
+		let funcFound = find_function scope string in
+		let formalTypes = List.map (fun {pdt=s; pname=_} -> s) funcFound.formals in
+		let checkedExprs = List.map (exprCheck scope) exprList in
+		let checkedTypes = List.map snd(checkedExprs) in
+		
+		(* check each type from checked list against fdecl param types in scope's function list *)
+		let rec typesMatch list1 list2 =
+		  (List.hd(list1)) = (List.hd(list2)) && typesMatch (List.tl(list1)) (List.tl(list2)) 
+		in
+		if (typesMatch formalTypes checkedTypes)
+		  then Ast.Call (string , checkedExprs) 
+	  else
+			raise(Failure("Function arguments do not match Function signature"))
+		)
+
+  | Ast.Noexpr -> Ast.Noexpr  
+
+
+
+
+
+let rec processStatement (scope,stmtList) stmt = 
+	let newScope = {
+	  parent =  scope.parent;  (* set parent to newglobalscope parameter *)
+	  functions = [];
+	  variables = []; 
+	} in
+	match stmt with
+  | Expr(e1)  -> 
+		let checkedExpr = exprCheck scope e1 in
+		scope, fst(stmt, checkedExpr)::stmtList
+		
+  | Vdecl(vd) -> 
+		 let checkedVar = find_variable scope vd.name in
+		 scope, fst(stmt, checkedVar)::stmtList
+
+  | Block(stmts) ->  
+	   let checkedBlock = snd( List.fold_left processStatement(newScope,[]) stmts ) in
+		 scope, fst(stmt, checkedBlock)::stmtList
+		
+	  (* Ast.Block( snd( List.fold_left processStatement(newScope,[]) stmts ) )::stmtList *)
+
+  | If(e, s1, s2) ->
+		let ec = exprCheck scope e in
+    let _, t1 = ec in
+		if t1 = Ast.BoolType then 
+			let newS1, s1c = (processStatement(newScope, []) s1) in 
+			let _, s2c = (processStatement (newScope, []) s2) in 
+			fst((newS1, stmt::stmtList), (newS1, Ast.If( ec, List.hd(s1c), List.hd(s2c) )))
+		else raise(Failure("predicate of If must be boolean expression"))
+		
+	| While(e, s) ->
+	  let ec = exprCheck scope e in
+    let _, t1 = ec in
+		if t1 = Ast.BoolType then
+		  let newS1, sc = (processStatement(newScope, []) s) in
+		  fst((newS1, stmt::stmtList), (newS1, Ast.While( ec, List.hd(sc) )))
+		else raise(Failure("predicate of While must be boolean expression"))
+
+  | Foreach(e, s) -> (* Includes ELE *)
+	  let ec = exprCheck scope e in
+    let _, t1 = ec in
+		let ele = {
+			vdt = Ast.AnytypeType; (* evaluate e and get type of first element, b/c e should be a list *)
+			vname = "ele";
+			value = Ast.Ele;  (* evaluate e and get value of first element, b/c e should be a list *)
+		} in
+		let eleScope =  (* eleScope extends newScope to include Ele *)
+    {
+	    parent = newScope.parent;  (* set parent to newglobalscope parameter *)
+	    functions = newScope.functions;
+	    variables = ele::newScope.variables; 
+	  } in
+		if t1 = Ast.BoolType then
+		  let newS1, sc = (processStatement(eleScope, []) s) in
+		  fst((newS1, stmt::stmtList), (newS1, Ast.Foreach( ec, List.hd(sc))))
+		else raise(Failure("predicate of Foreach must be boolean expression"))
+		
+  | Return(e) -> 
+		let curReturnType = (find_variable scope "return").vdt  (* store return type of current function in scope *)
+		in
+		let ec = exprCheck scope e in
+    let _, t1 = ec in
+		if t1 = curReturnType 
+		  then fst((scope, stmt::stmtList), (scope, Ast.Return(ec)))
+		else raise(Failure("Return type of function body doesn't match return type of function signature"))
+
+
+
+
+
+
+
+let processFdecl curScope fdecl =	match fdecl.fbody with
+	| [] -> raise(Failure("Empty functions not allowed"))
+  | _ ->
+		let retVdecl = {
+		  vdt = fdecl.fdt;
+			vname = "return";
+			value = Ast.Noexpr;
+		} in
+	  let retScope = {
+			parent = curScope.parent;
+			functions = curScope.functions;
+			variables = retVdecl::curScope.variables;
+    } in
+		let checkedFdecl = 
+		{
+		  fdt = fdecl.fdt;
+		  fname = fdecl.fname;
+		  formals = fdecl.formals;
+		  fbody = snd( List.fold_left processStatement(retScope, []) fdecl.fbody );
+		} in
+		checkedFdecl
+
+
+		
+
+let processFdecls bname fdecls scope = match bname, fdecls with
+| "SETUP", fdecl_list ->
+	  (* LOAD all funcs in list into symbol table (b/c all funcs should be able to "find" i.e. call each other) *)
+	    let addFunc scope fdecl =  
+				{ parent = scope.parent;
+				  functions = fdecl::scope.functions;
+				  variables = scope.variables }
+			in
+			let newGlobal = List.fold_left addFunc(scope) fdecls (* new scope containing all funcs in setup *)
+		in  
+	   let subScope = {
+			parent =  Some newGlobal;  (* set parent to newglobalscope parameter *)
+			functions = [];
+			variables = []; 
+		}
+		in
+		(* FOLD through each function and check *)
+		List.fold_left processFdecl(subScope) fdecl_list  (* outputs updated symbol table *)
+
+| _ , [] ->   None  (* Non-"SETUP" bname should have empty fdecls list *)
+| _ , _  ->   raise(Failure("Functions can only be declared in SETUP (at beginning)")) 
+
+
+
+
+let processBdecl bdecl scope = 
+		let funcsAndScope = processFdecls bdecl.bname, bdecl.funcs, scope
+		in  (* IN: bname, funcs list  --->>  OUT: func list, updated symbol table  *)
+		let updScope = snd(funcsAndScope)  (*grab scope from tuple*)
+		in
+		if bdecl.bname = "TURN"
+		  then let yourVdecl = {vdt = Ast.PlayerType; vname = "your"; value = Ast.PlayerType; } in
+		  let updScope = {
+			  parent = updScope.parent;
+				functions = updScope.functions;
+				variables = yourVdecl::updScope.variables;
+			} in
+		let bbodyAndScope = List.fold_left processStatement ( stmtList, updScope ) bdecl.bbody
+		in  (* IN: stmtList, scope, bbody   -->>   OUT: stmt list, updated symbol table *)
+		
+		let returnBdecl = {
+			bname = " ";
+			bid =   " ";
+			funcs = fst funcsAndScope;
+			bbody = fst bbodyAndScope;
+		}  in
+		returnBdecl
+		
+
+
+
+
+
+
+	
+(* valid next blocks for each block *)
+let curValid state block = match (state, block)
+with ("START", "PLAYER") -> true
+  | ("START", "SETUP") -> true
+  | ("PLAYER", "SETUP") -> true
+	| ("SETUP", "TURN") -> true
+	| ("SETUP", "WIN") -> true
+	| ("SETUP", "END") -> true
+	| ("TURN", "TURN") -> true
+	| ("TURN", "WIN") -> true
+	| ("TURN", "END") -> true
+	| ("WIN", "END") -> true
+	| _ -> false
+
+(* check that blocks are in a valid order *)
+let rec allValid state blocks = match blocks with
+		| [] -> true
+		| head::tail -> curValid state head && allValid head tail
+
+let startState = "START"
+let check_order block_list =
+    let extract_name bdecl = bdecl.bname in
+    let block_name_list = List.map extract_name block_list in
+		allValid startState block_name_list
+(* test for above: print_endline (if check_order ["PLAYER"; "SETUP"; "WIN"] then "correct order" else "incorrect order" );; *)	
+
+
+		
+
+(* MAIN *)
+(* Parameters:  Ast.Program, Symbol_Table(global)  *)
+(* Output:     Ast.Program *)
+let rec checkProgram program globalTable = 
+	fst( List.map processBdecl program )
+

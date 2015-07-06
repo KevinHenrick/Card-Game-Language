@@ -1,0 +1,52 @@
+/* Author: Mark Micchelli. Note: last year's DesCartes team implemented
+high-low in 82 lines; CGL's implementation only takes 47 */
+
+SETUP
+{
+	int score = 0;
+	list deck = STANDARD;
+	deck = shuffle(deck);
+	player p = <"", 1>;
+	
+	card c = <- deck;
+	int lastValue = value(c);
+	print("the first card has value " ^ intToString(lastValue) ^ "\n");
+	deck <+ c;
+	turn(p);
+}
+
+TURN 1
+{
+	bool properInput = false;
+	bool high = true;
+	while (!properInput)
+	{
+		print("will the next card be (h)igher or (l)ower?\n");
+		string guess = scan();
+		properInput = true;
+		if (guess == "l")
+			high = false;
+		else if (guess != "h")
+		{
+			print("invalid input\n");
+			properInput = false;
+		}
+	}
+
+	c = <- deck;
+	int thisValue = value(c);
+	deck <+ c;
+	print("new card's value is " ^ intToString(thisValue) ^ "\n");
+	if ((thisValue > lastValue && high) || (thisValue < lastValue && !high))
+	{
+		print("correct prediction\n");
+		score = score + 1;
+		lastValue = thisValue;
+		turn(p);
+	}
+	else
+	{
+		print("incorrect prediction; game over\n");
+		print("total score = " ^ intToString(score) ^ "\n");
+	}
+}

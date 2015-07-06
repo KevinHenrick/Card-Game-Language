@@ -1,0 +1,5 @@
+SETUP{
+	double a1=1. /2. * -4.;
+	string a=doubleToString(a1);
+	print(a);
+}

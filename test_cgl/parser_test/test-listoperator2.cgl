@@ -1,0 +1,7 @@
+SETUP{
+list h = [$AC, $AD, $AH];
+h <+ $AS;
+card a1 = h ->;
+string a=intToString(value(a1))^suit(a1);
+print(a);
+}

@@ -1,0 +1,7 @@
+SETUP{
+   int a1=9+4;
+   double b1=9. +4. ;
+   string a=intToString(a1);
+   string b=doubleToString(b1);
+   print(a^"\n"^b);
+}

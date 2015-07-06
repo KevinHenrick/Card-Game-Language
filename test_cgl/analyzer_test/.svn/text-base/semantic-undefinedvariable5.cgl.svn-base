@@ -1,0 +1,9 @@
+PLAYER {
+	list hand=[$AH];
+	hand <+ <-hand2;
+}
+
+SETUP {
+	list hand2=[$2H];
+}
+

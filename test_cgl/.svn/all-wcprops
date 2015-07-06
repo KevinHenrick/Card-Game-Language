@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/216/trunk/test_cgl
+END
+analyzer.bash
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/217/trunk/test_cgl/analyzer.bash
+END
+parser.bash
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/215/trunk/test_cgl/parser.bash
+END

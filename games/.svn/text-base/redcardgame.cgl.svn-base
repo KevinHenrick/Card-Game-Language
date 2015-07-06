@@ -1,0 +1,58 @@
+/* RED CARD GAME by Mark Micchelli */
+
+/* This gives each player in the game a score, a turn count, and a next
+ * player
+ */
+PLAYER
+{
+	int score = 0;
+	int turnCount = 0;
+	player next = NEMO;
+}
+
+/* This setup block declares two players, sets out the player order, creates
+ * a standard deck, shuffles it, and finally calls the turn function on the
+ * first player.
+ */
+SETUP
+{
+	string name1 = scan();
+	string name2 = scan();
+	player p1 = <name1, 1>;
+	player p2 = <name2, 1>;
+	p1.next = p2;
+	p2.next = p1;
+	list deck = STANDARD;
+	deck = shuffle(deck);
+	turn(p1);
+}
+
+/* If the top card of the deck is a red card, give the player a point. Then,
+ * put the card on the bottom of the deck. If the player has moved five
+ * times, move to the win block. */
+TURN 1
+{
+	if (your.turnCount >= 5)
+		win();
+
+	card c = <- deck;
+	print(your.name ^ " drew " ^ intToString(value(c)) ^ suit(c) ^ "\n");
+	if (c == $*D || c == $*H)
+		your.score = your.score + 1;
+	print(your.name ^ "'s score is " ^ intToString(your.score) ^ "\n");
+	deck <+ c;
+	your.turnCount = your.turnCount + 1;
+	turn(your.next);
+}
+
+/* Tests to see which player drew more red cards, and declares that player
+ * the winner. */
+WIN
+{
+	if (p1.score > p2.score)
+		print(p1.name ^ " wins\n");
+	else if (p1.score < p2.score)
+		print(p2.name ^ " wins\n");
+	else
+		print("draw\n");
+}

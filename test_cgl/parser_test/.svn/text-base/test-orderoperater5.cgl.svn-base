@@ -1,0 +1,5 @@
+SETUP{
+	bool a1=false && (false || true);
+	string a="true";
+	if (a1){print(a);}
+}

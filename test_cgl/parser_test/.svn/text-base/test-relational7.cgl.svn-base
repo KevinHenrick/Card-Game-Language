@@ -1,0 +1,14 @@
+SETUP{
+	bool a1 = 6 === 7;
+	bool b1 = 6 === “6”;
+	bool c1 = [6] === [“6”];
+	bool d1 = [] === [[]];
+	string a ="true";
+	string b ="false";
+	string c ="true";
+	string d = "true";
+	if (a1){print(a^"\n");}
+	if (!b1){print(b^"\n");}
+	if (c1){print(c^"\n");}
+	if (d1){print(d^"\n");}
+}

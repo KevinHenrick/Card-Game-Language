@@ -1,0 +1,216 @@
+PLAYER
+{
+	player next = NEMO;
+	list hand = [];
+	int score = 0;
+	bool bust = false;
+}
+
+SETUP
+{
+	/* card function */
+	def string valueToString(int value)
+	{
+		if (value == 14) return "A";
+		else if (value == 13) return "K";
+		else if (value == 12) return "Q";
+		else if (value == 11) return "J";
+		else if (value == 0) return "*";
+		else if (value < 2 || value > 14) return "INVALID";
+		else return intToString(value);
+	}
+	
+	/* list function */
+	def int length (list l)
+	{
+		int length = 0;
+		foreach(l) { length = length + 1; }
+		return length;
+	}
+
+	/* list function */
+	def anytype get(int index, list l)
+	{
+		if (index > length(l))
+		{
+			print("index too high\n");
+			return -1;
+		}
+		else
+		{
+			int i = 1;
+			foreach(l)
+			{
+				if (i == index) return ele;
+				i = i + 1;
+			}
+		}
+		return "never reached";
+	}
+
+	/* list function */
+	def bool in(anytype e, list l)
+	{
+		bool in = false;
+		foreach(l)
+		{
+			if (ele === e && ele == e)
+				in = true;
+		}
+		return in;
+	}
+
+	def int bigBreak()
+	{
+		print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" ^
+			  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		return 0;
+	}
+
+	/* calculates blackjack score (ace is always 11 for convenience */
+	def int score (list hand)
+	{
+		int handScore = 0;
+		foreach (hand)
+		{
+			if (ele == $A*) handScore = handScore + 11;
+			else if (ele == $J* || ele == $Q* || ele == $K*)
+				handScore = handScore + 10;
+			else handScore = handScore + value(ele);
+		}
+		return handScore;
+	}
+
+	/* takes in player name and AI info */
+	def list addPlayers(list validIDs)
+	{
+		list players = [];
+		while (length(players) < 4)
+		{
+			print("please enter player name\n");
+			string name = scan();
+			print("please enter 1 if human, or 2 if AI\n");
+			string id = scan();
+			int turnID = stringToInt(id);
+			if (in(turnID, validIDs))
+				players <+ <name, turnID>;
+			else
+				print("invalid input\n");
+		}
+		return players;
+	}
+
+	/* code proper */
+	list players = addPlayers([1, 2]);
+	player p1 = <- players; 
+	player p2 = <- players;
+	player p3 = <- players;
+	player p4 = <- players;
+
+	p1.next = p2;
+	p2.next = p3;
+	p3.next = p4;
+	p4.next = NEMO;
+
+	int maxScore = 21;
+	list deck = STANDARD;
+	deck = shuffle(deck);
+
+	p1.hand <+ <- deck;
+	p2.hand <+ <- deck;
+	p3.hand <+ <- deck;
+	p4.hand <+ <- deck;
+	p1.hand <+ <- deck;
+	p2.hand <+ <- deck;
+	p3.hand <+ <- deck;
+	p4.hand <+ <- deck;
+	
+	turn(p1);
+}
+
+TURN 1
+{
+	your.score = score(your.hand);
+	bool done = false;
+	print(your.name ^ "'s turn; press enter to continue\n");
+	scan();
+	bigBreak();
+	print("you have ");
+	foreach (your.hand)
+	{
+		print(valueToString(value(ele)) ^ suit(ele) ^ " ");
+	}
+	print("\ntype \"h\" for hit; anything else for stay\n");
+	string s = scan();
+	if (s == "h")
+	{
+		card c = <- deck;
+		your.hand <+ c;
+		print("you got a " ^ valueToString(value(c)) ^ suit(c) ^ "\n");
+		your.score = score(your.hand);
+		if (your.score > maxScore)
+		{
+			your.bust = true;
+			your.score = 0;
+			bigBreak();
+			print("bust!\n");
+			turn(your.next);
+		}
+		else
+			turn(your);
+	}
+	else
+	{
+		bigBreak();
+		turn(your.next);
+	}
+}
+
+/* AI turn */
+TURN 2
+{
+	your.score = score(your.hand);
+	if (your.score <= 14) /* AI only hits if score lower than 14 */
+	{
+		your.hand <+ <- deck;
+		your.score = score(your.hand);
+		if (your.score > maxScore)
+		{
+			your.bust = true;
+			your.score = 0;
+			turn(your.next);
+		}
+		else
+			turn(your);
+	}
+	else
+		turn(your.next);
+}
+
+WIN
+{
+	player best = NEMO;
+	int bestScore = 0;
+	list scores = [];
+	scores <+ p1.score;
+	scores <+ p2.score;
+	scores <+ p3.score;
+	scores <+ p4.score;
+	print(p1.name ^ " scored " ^ p1.score ^ "\n");
+	print(p2.name ^ " scored " ^ p2.score ^ "\n");
+	print(p3.name ^ " scored " ^ p3.score ^ "\n");
+	print(p4.name ^ " scored " ^ p4.score ^ "\n"); 
+
+	int i = 0;
+	while (length(scores) != 0)
+	{
+		int playerScore = <- scores;
+		if (playerScore > bestScore)
+			bestScore = playerScore;
+	}
+
+	if (p1.score == bestScore) print(p1.name ^ " wins\n");
+	if (p2.score == bestScore) print(p2.name ^ " wins\n");
+	if (p3.score == bestScore) print(p3.name ^ " wins\n");
+	if (p4.score == bestScore) print(p4.name ^ " wins\n");
+}

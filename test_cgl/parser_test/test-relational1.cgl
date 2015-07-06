@@ -1,0 +1,8 @@
+SETUP{
+bool a1 = 5 >= 3;
+bool b1 = 6.5 >= 9.2;
+string a ="true";
+string b ="false";
+if (a1){print(a^"\n");}
+if (!b1){print(b);}
+}

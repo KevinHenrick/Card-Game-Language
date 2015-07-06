@@ -1,0 +1,11 @@
+SETUP {
+	player p1 = <name1, 1>;
+	turn(p1);
+}
+TURN 1{
+	int a =1;
+	win();
+}
+WIN{
+	a=2;
+}

@@ -1,0 +1,449 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/195/trunk/test_cgl/parser_test
+END
+test-relational7.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational7.out
+END
+test-relational8.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational8.out
+END
+test-assign.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-assign.cgl
+END
+test-cardlist1.out
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-cardlist1.out
+END
+test-punctCond.out
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctCond.out
+END
+test-orderoperater1.out
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater1.out
+END
+test-orderoperater2.out
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater2.out
+END
+test-orderoperater3.out
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater3.out
+END
+test-orderoperater4.out
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater4.out
+END
+test-orderoperater5.out
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater5.out
+END
+test-orderoperater6.out
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater6.out
+END
+test-listoperator1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator1.cgl
+END
+test-listoperator2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator2.cgl
+END
+test-listoperator3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator3.cgl
+END
+test-relational1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational1.cgl
+END
+test-listoperator4.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator4.cgl
+END
+test-relational2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational2.cgl
+END
+test-relational3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational3.cgl
+END
+test-relational4.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational4.cgl
+END
+test-relational5.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational5.cgl
+END
+test-relational6.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational6.cgl
+END
+test-relational7.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational7.cgl
+END
+test-relational8.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational8.cgl
+END
+test-punctLoop.out
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctLoop.out
+END
+test-cardlist1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-cardlist1.cgl
+END
+test-listdeclarition.out
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listdeclarition.out
+END
+test-card1.out
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-card1.out
+END
+test-punctCond.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctCond.cgl
+END
+test-card2.out
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-card2.out
+END
+test-orderoperater1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater1.cgl
+END
+test-orderoperater2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater2.cgl
+END
+test-orderoperater3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater3.cgl
+END
+test-orderoperater4.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater4.cgl
+END
+test-orderoperater5.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater5.cgl
+END
+test-orderoperater6.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-orderoperater6.cgl
+END
+test-punctFunc.out
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctFunc.out
+END
+test-bool1.out
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-bool1.out
+END
+test-bool2.out
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-bool2.out
+END
+test-bool3.out
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-bool3.out
+END
+test-punctLoop.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctLoop.cgl
+END
+test-punctForeach.out
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctForeach.out
+END
+test-listdeclarition.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listdeclarition.cgl
+END
+test-arith1.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith1.out
+END
+test-card1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-card1.cgl
+END
+test-arith2.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith2.out
+END
+test-card2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-card2.cgl
+END
+test-arith3.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith3.out
+END
+test-arith4.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith4.out
+END
+test-arith5.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith5.out
+END
+test-arith6.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith6.out
+END
+test-punctFunc.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctFunc.cgl
+END
+test-concatenate1.out
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-concatenate1.out
+END
+test-bool1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-bool1.cgl
+END
+test-bool2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-bool2.cgl
+END
+test-bool3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-bool3.cgl
+END
+test-punctForeach.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-punctForeach.cgl
+END
+test-assign.out
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-assign.out
+END
+test-arith1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith1.cgl
+END
+test-arith2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith2.cgl
+END
+test-arith3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith3.cgl
+END
+test-arith4.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith4.cgl
+END
+test-arith5.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith5.cgl
+END
+test-arith6.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-arith6.cgl
+END
+test-concatenate1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-concatenate1.cgl
+END
+test-listoperator1.out
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator1.out
+END
+test-listoperator2.out
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator2.out
+END
+test-listoperator3.out
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator3.out
+END
+test-listoperator4.out
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-listoperator4.out
+END
+test-relational1.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational1.out
+END
+test-relational2.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational2.out
+END
+test-relational3.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational3.out
+END
+test-relational4.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational4.out
+END
+test-relational5.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational5.out
+END
+test-relational6.out
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/195/trunk/test_cgl/parser_test/test-relational6.out
+END

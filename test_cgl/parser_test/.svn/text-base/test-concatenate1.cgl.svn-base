@@ -1,0 +1,5 @@
+SETUP{
+   string a = "foo"^"bar";
+   string b = a ^ "baz";
+   print(a^"\n"^b);
+}

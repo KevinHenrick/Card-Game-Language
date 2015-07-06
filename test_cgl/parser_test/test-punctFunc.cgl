@@ -1,0 +1,16 @@
+SETUP{
+	def int length(list l)
+	{
+		int length = 0;
+		foreach (l)
+		{
+			length = length + 1;
+		}
+		return length;
+	}
+	
+	list l=[1,2];
+	int a1=length(l);
+	string a=intToString(a1);
+	print(a);
+}

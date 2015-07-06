@@ -1,0 +1,59 @@
+/* Author: Kevin Henrick, Hebo Yang */
+/* This is a typical, but very short game that is used during a poker game to determine who deals first.*/
+/* In this example, there are four players. */
+/* Finding_the_First_Ace */
+
+PLAYER{
+	player next = NEMO;
+}
+
+SETUP {
+	 print("please enter name for player 1\n");
+	 string name1 = scan();
+	 print("please enter name for player 2\n");
+     string name2 = scan();
+	 print("please enter name for player 3\n");
+     string name3 = scan();
+	 print("please enter name for player 4\n");
+     string name4 = scan(); 
+     player p1 = <name1, 1>;
+     player p2 = <name2, 1>;
+     player p3 = <name3, 1>;
+     player p4 = <name4, 1>;
+     list deck = STANDARD;
+     deck = shuffle(deck);
+     p1.next = p2;
+     p2.next = p3;  
+     p3.next = p4;
+     p4.next = p1;
+	 
+	 card c = $2H;
+     turn(p1);
+}
+
+TURN 1
+{   
+        bool properInput = false;
+    	
+    	while (!properInput){
+    		print("please (d)raw a card from the deck\n");
+    		string draw = scan();
+    		properInput = true;
+    		if (draw == "d"){
+    		    c = <- deck;
+		     	if (c == $A*){
+						
+		               print(your.name ^ " drew " ^ "A" ^ suit(c) ^ ", the first Ace, and gets to deal. Shuffle 'em up!\n");
+		        }
+		     	else if (c != $A*){
+		               print(your.name ^ " drew " ^ intToString(value(c)) ^ suit(c) ^ ", " ^ your.next.name ^ "'s turn\n");          
+                               turn(your.next); 
+    		    }
+			}
+    		else if (draw != "d"){
+    			print("invalid input\n");
+    			properInput = false;
+    		}
+	   	}
+
+}

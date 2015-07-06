@@ -1,0 +1,7 @@
+SETUP{
+   list l = [3,2,1];
+   4+>l;
+   int a1= <- l;
+	string a=intToString(a1);
+   print(a);
+}

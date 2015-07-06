@@ -1,0 +1,51 @@
+# Author: Hebo Yang
+# Usage: test.bash <srcfile>
+#        srcfile: the source file to be tested.
+#        If no srcfile is specified, it will run all test cases.
+
+#!/bin/bash
+
+cgl="../_build/cgl"
+testpath="./parser_test/"
+
+#Run All test if no source file specified
+if [ $# -lt 1 ]
+then
+	echo "Running all tests..."
+elif [ "$1" = "clean" ]
+then
+	rm $testpath*.result ./*.java ./*.class 
+    exit
+else
+	file=$1
+	echo "Testing $file"
+    $cgl -j $testpath$file
+	javac Main.java CGLList.java Card.java Player.java
+    filename=`expr $file : '\(^.*\)'[.]`
+    java Main > $filename.result
+	output=$filename.out
+    diff -b $filename.result $testpath$output
+	exit 0
+fi
+
+if [ ! -e "$cgl" ]
+then
+	echo "CGL compiler not found!"
+	exit
+fi
+
+echo "Parser tests"
+for file in $testpath*.cgl
+do
+	echo "Testing $file"
+    $cgl -j $file
+	javac Main.java CGLList.java Card.java Player.java
+    filename=`expr $file : '\(^.*\)'[.]`
+    java Main > $filename.result
+	output=$filename.out
+    diff -b $filename.result $output
+
+done
+
+rm -rf *.java *.class $testpath/*.result
+echo "Tests done."

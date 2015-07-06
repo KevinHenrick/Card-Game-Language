@@ -1,0 +1,4 @@
+SETUP{
+	bool a=true;
+	bool a=false;
+}

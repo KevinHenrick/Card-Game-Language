@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test
+END
+semantic-undefinedvariable.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-undefinedvariable.cgl
+END
+semantic-blockorder1.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-blockorder1.cgl
+END
+semantic-blockplayer.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-blockplayer.cgl
+END
+semantic-foreach.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-foreach.cgl
+END
+semantic-assignment.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-assignment.cgl
+END
+semantic-blockorder2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-blockorder2.cgl
+END
+semantic-funpara2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-funpara2.cgl
+END
+semantic-funpara3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-funpara3.cgl
+END
+semantic-dupvardecl.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-dupvardecl.cgl
+END
+semantic-undefinedvariable2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-undefinedvariable2.cgl
+END
+semantic-assignment2.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-assignment2.cgl
+END
+semantic-undefinedvariable3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-undefinedvariable3.cgl
+END
+semantic-undefinedvariable4.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/214/trunk/test_cgl/analyzer_test/semantic-undefinedvariable4.cgl
+END
+semantic-assignment3.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-assignment3.cgl
+END
+semantic-funpara.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-funpara.cgl
+END
+semantic-undefinedvariable5.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-undefinedvariable5.cgl
+END
+semantic-undefinedvariable6.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-undefinedvariable6.cgl
+END
+semantic-undefinedfuntion.cgl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/195/trunk/test_cgl/analyzer_test/semantic-undefinedfuntion.cgl
+END

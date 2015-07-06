@@ -1,0 +1,5 @@
+SETUP {
+	bool a=true;
+	a=myfun();
+}
+

@@ -1,0 +1,6 @@
+SETUP{
+	list f = [1, 1, 2, 3, 5, 8];
+	int i = f ->;
+	string a=intToString(i);
+	print(a);
+}

@@ -1,0 +1,7 @@
+SETUP{
+	list l=[1,2,3];
+	foreach(l){
+		string a=intToString(ele);
+		print(a);
+	}
+}

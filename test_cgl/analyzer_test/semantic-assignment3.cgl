@@ -1,0 +1,5 @@
+SETUP{
+	bool a=true;
+	int b=1;
+	a=b;
+}
